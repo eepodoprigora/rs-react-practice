@@ -6,6 +6,8 @@ export const server = {
 	async authorize(authLogin, authPassword) {
 		const user = await getUser(authLogin);
 
+		console.log(user, 'user12');
+
 		if (!user) {
 			return {
 				error: 'Такой пользователь не найден',
