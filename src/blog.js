@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Routes, Route } from 'react-router-dom';
 
-import { Header } from './components';
+import { Header, Footer } from './components';
 
 const Content = styled.div`
 	padding: 120px 0;
@@ -20,8 +20,6 @@ const AppColumn = styled.div`
 	margin: 0 auto;
 	background-color: #fff;
 `;
-
-const Footer = () => <div>Подвал страницы</div>;
 
 export const Blog = () => {
 	return (
