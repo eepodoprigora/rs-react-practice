@@ -7,6 +7,24 @@ body {
 		sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+	background: #F8F4F0;
+}
+
+html,
+body,
+#root {
+	height: 100%;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+a {
+	color: #000;
+	text-decoration: none;
 }
 
 code {
