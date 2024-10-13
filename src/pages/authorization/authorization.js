@@ -1,12 +1,17 @@
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
-import { NavLink } from 'react-router-dom';
+import { Navigate, NavLink } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { server } from '../../bff';
-import { useState } from 'react';
-import styled from 'styled-components';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector, useStore } from 'react-redux';
 
 import { Input, H2, Button } from '../../components';
+import { setUser } from '../../actions';
+
+import styled from 'styled-components';
+import { selectUserRole } from '../../selectors';
+import { ROLE } from '../../constants';
 
 const authFormSchema = yup.object().shape({
 	login: yup
@@ -25,11 +30,15 @@ const authFormSchema = yup.object().shape({
 
 const AuthorizationContainer = ({ className }) => {
 	const [serverError, setServerError] = useState(null);
+	const dispatch = useDispatch();
+	const store = useStore();
+	const roleId = useSelector(selectUserRole);
 
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
+		reset,
 	} = useForm({
 		defaultValues: {
 			login: '',
@@ -38,11 +47,25 @@ const AuthorizationContainer = ({ className }) => {
 		resolver: yupResolver(authFormSchema),
 	});
 
-	const onSubmit = ({ login, register }) => {
-		server.authorize(login, register).then(({ error, res }) => {
+	useEffect(() => {
+		let currentWasLogout = store.getState().app.wasLogout;
+		return store.subscribe(() => {
+			let prevWasLogout = currentWasLogout;
+			currentWasLogout = store.getState().app.wasLogout;
+
+			if (currentWasLogout !== prevWasLogout) {
+				reset();
+			}
+		});
+	}, [reset, store]);
+
+	const onSubmit = ({ login, password }) => {
+		server.authorize(login, password).then(({ error, res }) => {
 			if (error) {
 				setServerError(`Ошибка запроса: ${error}`);
+				return;
 			}
+			dispatch(setUser(res));
 		});
 	};
 	const formError = errors?.login?.message || errors?.password?.message;
@@ -61,6 +84,10 @@ const AuthorizationContainer = ({ className }) => {
 		margin: 10px 0;
 		padding: 10px;
 	`;
+
+	if (roleId !== ROLE.GUEST) {
+		return <Navigate to="/" />;
+	}
 
 	return (
 		<div className={className}>
