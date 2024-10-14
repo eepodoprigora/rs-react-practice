@@ -1,14 +1,18 @@
 import { generateDate } from './generate-date';
 
 export const addUser = (login, password) => {
-	fetch('http://localhost:3005/users', {
+	return fetch('http://localhost:3005/users', {
 		method: 'POST',
-		headers: 'Content-type: application/json;charset=utf-8',
+		headers: {
+			'Content-Type': 'application/json;charset=utf-8',
+		},
 		body: JSON.stringify({
 			login,
 			password,
 			registred_at: generateDate(),
-			role_id: 3,
+			role_id: 2,
 		}),
-	});
+	})
+		.then((createdUser) => createdUser.json())
+		.catch((error) => console.error('Error adding user:', error));
 };
