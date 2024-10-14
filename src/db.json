@@ -4,22 +4,8 @@
       "id": "1",
       "login": "anton",
       "password": "qwerty123",
-      "registed_at": "2024-04-08",
-      "role_id": "0"
-    },
-    {
-      "id": "40e2",
-      "login": "iban",
-      "password": "123456",
-      "registred_at": "2056-01-09 20:35",
-      "role_id": 2
-    },
-    {
-      "id": "89e8",
-      "login": "ivan",
-      "password": "qqqqqq",
-      "registred_at": "2061-08-16 18:31",
-      "role_id": 2
+      "registered_at": "2024-04-08",
+      "role_id": 0
     }
   ],
   "roles": [

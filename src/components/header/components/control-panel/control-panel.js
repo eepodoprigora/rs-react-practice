@@ -17,10 +17,6 @@ const RightAlined = styled.div`
 	align-items: center;
 `;
 
-const StyledIcon = styled.div`
-	cursor: pointer;
-`;
-
 const UserName = styled.div`
 	font-size: 18px;
 	font-weight: 800;
@@ -43,16 +39,21 @@ const ControlPanelContainer = ({ className }) => {
 				) : (
 					<>
 						<UserName>{login}</UserName>
-						<StyledIcon onClick={() => dispatch(logout(session))}>
-							<Icon id="fa-sign-out" margin="0 0 0 10px" />
-						</StyledIcon>
+
+						<Icon
+							id="fa-sign-out"
+							margin="0 0 0 10px"
+							onClick={() => dispatch(logout(session))}
+						/>
 					</>
 				)}
 			</RightAlined>
 			<RightAlined>
-				<StyledIcon onClick={() => navigate(-1)}>
-					<Icon id="fa-long-arrow-left" margin="10px 0 0 0" />
-				</StyledIcon>
+				<Icon
+					id="fa-long-arrow-left"
+					margin="10px 0 0 0"
+					onClick={() => navigate(-1)}
+				/>
 
 				<NavLink to="post">
 					<Icon id="fa-file-text-o" margin="10px 0 0 15px" />
