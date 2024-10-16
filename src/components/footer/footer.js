@@ -23,7 +23,7 @@ const FooterContainer = ({ className }) => {
 			.catch((error) => console.error('Ошибка при запросе:', error));
 	}, []);
 	return (
-		<div className={className}>
+		<footer className={className}>
 			<div>
 				<div>Блог веб разработчика</div>
 				<a href="emailto:web@develorep.ru">web@develorep.ru</a>
@@ -38,14 +38,14 @@ const FooterContainer = ({ className }) => {
 					{temperature} градусов {weather}
 				</div>
 			</div>
-		</div>
+		</footer>
 	);
 };
 
 export const Footer = styled(FooterContainer)`
 	display: flex;
 	justify-content: space-between;
-	align-atems: center;
+	align-items: center;
 	height: 120px;
 	padding: 20px 40px;
 	width: 1000px;

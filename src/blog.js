@@ -1,10 +1,13 @@
 import styled from 'styled-components';
 import { Routes, Route } from 'react-router-dom';
-import { Authorization, Registration, Users } from './pages';
+import { Authorization, Registration, Users, Post } from './pages';
 import { Header, Footer } from './components';
+import { useLayoutEffect } from 'react';
+import { setUser } from './actions';
+import { useDispatch } from 'react-redux';
 
 const Page = styled.div`
-	padding: 180px 0 120px;
+	padding: 150px 0 20px;
 `;
 
 const AppColumn = styled.div`
@@ -18,6 +21,16 @@ const AppColumn = styled.div`
 `;
 
 export const Blog = () => {
+	const dispatch = useDispatch();
+	useLayoutEffect(() => {
+		const currentUserDataJSON = sessionStorage.getItem('userData');
+
+		const currentUserData = JSON.parse(currentUserDataJSON);
+
+		if (!currentUserData) return;
+
+		dispatch(setUser({ ...currentUserData, roleId: Number(currentUserData.roleId) }));
+	}, [dispatch]);
 	return (
 		<AppColumn>
 			<Header />
@@ -28,7 +41,7 @@ export const Blog = () => {
 					<Route path="/register" element={<Registration />} />
 					<Route path="/users" element={<Users />} />
 					<Route path="/post/" element={<div>Новая статья</div>} />
-					<Route path="/post/:postId" element={<div>Статья</div>} />
+					<Route path="/post/:id" element={<Post />} />
 					<Route path="*" element={<div>Ошибка</div>} />
 				</Routes>
 			</Page>
