@@ -16,5 +16,12 @@ export const Button = styled(ButtonContainer)`
 	background-color: #eee;
 	font-size: 18px;
 	width: ${({ width = '100%' }) => width};
+	margin: ${({ margin = '0' }) => margin};
 	height: 32px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+
+	&:hover {
+		background-color: #c4c4c4;
+	}
 `;

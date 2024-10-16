@@ -10,19 +10,19 @@
   ],
   "roles": [
     {
-      "id": 0,
+      "id": "0",
       "name": "Администратор"
     },
     {
-      "id": 1,
+      "id": "1",
       "name": "Модератор"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Читатель"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Гость"
     }
   ],
@@ -56,41 +56,6 @@
       "post_id": "002",
       "published_at": "2061-08-15 10:15",
       "content": "мой первый комментарий"
-    },
-    {
-      "id": "0f17",
-      "author_id": "1",
-      "post_id": "002",
-      "published_at": "2054-09-12 09:12",
-      "content": "рек"
-    },
-    {
-      "id": "fb72",
-      "author_id": "1",
-      "post_id": "002",
-      "published_at": "2062-07-22 20:57",
-      "content": "er"
-    },
-    {
-      "id": "8350",
-      "author_id": "1",
-      "post_id": "002",
-      "published_at": "2033-10-09 23:05",
-      "content": "errrr"
-    },
-    {
-      "id": "001f",
-      "author_id": "1",
-      "post_id": "002",
-      "published_at": "2060-08-24 16:39",
-      "content": "www"
-    },
-    {
-      "id": "8e97",
-      "author_id": "1",
-      "post_id": "002",
-      "published_at": "2033-07-12 05:37",
-      "content": "новый комментарий"
     }
   ],
   "sessions": [
