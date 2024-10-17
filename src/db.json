@@ -61,16 +61,31 @@
       "title": "Тестовая 3",
       "published_at": "2034-10-06 08:00",
       "content": "Попробуйте следующую версию кода, где правильно расставлены скобки и добавлен возврат результата "
-    },
-    {
-      "id": "af2c",
-      "image_url": "qqq",
-      "title": "qqqqq",
-      "published_at": "2044-10-12 00:04",
-      "content": "qqqqqq"
     }
   ],
-  "comments": [],
+  "comments": [
+    {
+      "id": "c5ef",
+      "author_id": "1",
+      "post_id": "7515",
+      "published_at": "2035-03-16 05:50",
+      "content": "Gthdsq "
+    },
+    {
+      "id": "27e3",
+      "author_id": "1",
+      "post_id": "7515",
+      "published_at": "2057-05-27 17:50",
+      "content": "dnjhjq"
+    },
+    {
+      "id": "24ef",
+      "author_id": "1",
+      "post_id": "7515",
+      "published_at": "2050-06-16 06:40",
+      "content": "nhtnbq"
+    }
+  ],
   "sessions": [
     {
       "id": "f3a0",
