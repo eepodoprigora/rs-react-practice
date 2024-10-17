@@ -21,7 +21,7 @@ const UsersContainer = ({ className }) => {
 					setErrorMessage(usersRes.error || rolesRes.error);
 					return;
 				}
-				console.log(usersRes, rolesRes, 'resss');
+
 				setUsers(usersRes.res);
 				setRoles(rolesRes.res);
 			},

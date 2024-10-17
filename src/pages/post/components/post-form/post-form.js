@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Input, Icon } from '../../../../components';
 import { SpecialPanel } from '../special-panel/special-panel';
 import { sanitizeContent } from './utils';
-import { useRef } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { savePostAsync } from '../../../../actions';
 import { useServerRequest } from '../../../../hooks';
@@ -12,8 +12,9 @@ const PostFormContainer = ({
 	className,
 	post: { id, title, imageUrl, content, publishedAt },
 }) => {
-	const imageRef = useRef(null);
-	const titletRef = useRef(null);
+	const [imageUrlValue, setImageUrlValue] = useState(imageUrl);
+	const [titlelValue, setTitleValue] = useState(title);
+
 	const contentRef = useRef(null);
 
 	const dispatch = useDispatch();
@@ -21,25 +22,39 @@ const PostFormContainer = ({
 
 	const requestServer = useServerRequest();
 
+	useLayoutEffect(() => {
+		setImageUrlValue(imageUrl);
+		setTitleValue(title);
+	}, [title, imageUrl]);
+
 	const onSave = () => {
-		const newImageUrl = imageRef.current.value;
-		const newTitle = titletRef.current.value;
 		const newContent = sanitizeContent(contentRef.current.innerHTML);
 
 		dispatch(
 			savePostAsync(requestServer, {
 				id: id,
-				imageUrl: newImageUrl,
-				title: newTitle,
+				imageUrl: imageUrlValue,
+				title: titlelValue,
 				content: newContent,
 			}),
-		).then(() => navigate(`/post/${id}`));
+		).then(({ id }) => navigate(`/post/${id}`));
 	};
+
+	const onImageChange = ({ target }) => setImageUrlValue(target.value);
+	const onTitleChange = ({ target }) => setTitleValue(target.value);
 
 	return (
 		<div className={className}>
-			<Input ref={imageRef} defaultValue={imageUrl} placeholder="Изображение..." />
-			<Input ref={titletRef} defaultValue={title} placeholder="Заголовок..." />
+			<Input
+				value={imageUrlValue}
+				placeholder="Изображение..."
+				onChange={onImageChange}
+			/>
+			<Input
+				value={titlelValue}
+				placeholder="Заголовок..."
+				onChange={onTitleChange}
+			/>
 			<SpecialPanel
 				id={id}
 				publishedAt={publishedAt}
@@ -73,5 +88,7 @@ export const PostForm = styled(PostFormContainer)`
 
 	.post-text {
 		white-space: pre-line;
+		min-height: 80px;
+		border: 1px solid #000;
 	}
 `;

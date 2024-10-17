@@ -30,7 +30,12 @@ const CommentContainer = ({ className, id, author, publishedAt, content, postId 
 						{author}
 					</div>
 					<div className="published-at">
-						<Icon id="fa-calendar-o" margin="0 12px 0 10px" size="20px" />
+						<Icon
+							id="fa-calendar-o"
+							margin="0 12px 0 10px"
+							size="20px"
+							inactive="true"
+						/>
 						{publishedAt}
 					</div>
 				</div>

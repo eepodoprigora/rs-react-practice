@@ -1,6 +1,6 @@
 import { sessions } from '../sessions';
 import { ROLE } from '../constants';
-import { updatePost } from '../api';
+import { addPost, updatePost } from '../api';
 
 export const savePost = async (hash, newPostData) => {
 	const accessRoles = [ROLE.ADMIN];
@@ -13,10 +13,13 @@ export const savePost = async (hash, newPostData) => {
 		};
 	}
 
-	const updatedPost = await updatePost(newPostData);
+	const savedPost =
+		newPostData.id === ''
+			? await addPost(newPostData)
+			: await updatePost(newPostData);
 
 	return {
 		error: null,
-		res: updatedPost,
+		res: savedPost,
 	};
 };
