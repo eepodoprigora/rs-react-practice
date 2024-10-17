@@ -11,3 +11,4 @@ export * from './get-roles';
 export * from './get-session';
 export * from './get-post';
 export * from './set-user-role';
+export * from './update-post';
