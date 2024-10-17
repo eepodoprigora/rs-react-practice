@@ -5,6 +5,7 @@ export * from './fetch-users';
 export * from './fetch-post';
 export * from './register';
 export * from './remove-user';
+export * from './remove-post';
 export * from './remove-post-comment';
 export * from './logout';
 export * from './save-post';

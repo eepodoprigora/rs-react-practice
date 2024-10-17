@@ -8,6 +8,7 @@ import { useServerRequest } from '../../../../../../hooks';
 const CommentContainer = ({ className, id, author, publishedAt, content, postId }) => {
 	const dispatch = useDispatch();
 	const requestServer = useServerRequest();
+
 	const onCommentRemove = (id) => {
 		dispatch(
 			openModal({
