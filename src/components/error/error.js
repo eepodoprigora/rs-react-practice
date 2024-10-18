@@ -13,9 +13,10 @@ const ErrorContainer = ({ className, error }) => {
 export const Error = styled(ErrorContainer)`
 	padding: 0 40px;
 	text-align: center;
+	font-size: 18px;
 	.error-text {
 		display: flex;
-		align-items: cneter;
+		align-items: center;
 		justify-content: center;
 	}
 `;
