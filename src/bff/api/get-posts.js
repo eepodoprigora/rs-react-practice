@@ -1,12 +1,23 @@
 import { transformPost } from '../transformers';
 
-export const getPosts = async (page, limit) => {
-	return fetch(`http://localhost:3005/posts?_page=${page}&_per_page=${limit}`)
-		.then((loadedPosts) => loadedPosts.json())
+export const getPosts = async (searchPhrase, page, limit) => {
+	const searchQueryMain = 'http://localhost:3005/posts';
+	// Загружаем все статьи без фильтрации
+	return fetch(searchQueryMain)
+		.then((response) => response.json())
 		.then((loadedPosts) => {
+			// Фильтруем статьи по заголовку
+			const filteredPosts = loadedPosts.filter((post) =>
+				post.title.toLowerCase().includes(searchPhrase.toLowerCase()),
+			);
+
+			// Пагинация: выбираем нужные статьи на основе текущей страницы и лимита
+			const startIndex = (page - 1) * limit;
+			const paginatedPosts = filteredPosts.slice(startIndex, startIndex + limit);
+
 			return {
-				posts: loadedPosts.data && loadedPosts.data.map(transformPost),
-				lastPage: loadedPosts.last,
+				posts: paginatedPosts.map(transformPost),
+				lastPage: Math.ceil(filteredPosts.length / limit),
 			};
 		});
 };
