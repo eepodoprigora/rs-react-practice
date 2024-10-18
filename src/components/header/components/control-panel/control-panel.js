@@ -10,6 +10,7 @@ import {
 	selectUserSession,
 } from '../../../../selectors';
 import { logout } from '../../../../actions';
+import { checkAccess } from '../../../../utils/check-access';
 
 const RightAlined = styled.div`
 	display: flex;
@@ -35,6 +36,7 @@ const ControlPanelContainer = ({ className }) => {
 		sessionStorage.removeItem('userData');
 		navigate('/');
 	};
+	const isAdmin = checkAccess([ROLE.ADMIN], roleId);
 
 	return (
 		<div className={className}>
@@ -57,13 +59,16 @@ const ControlPanelContainer = ({ className }) => {
 					margin="10px 0 0 0"
 					onClick={() => navigate(-1)}
 				/>
-
-				<NavLink to="post">
-					<Icon id="fa-file-text-o" margin="10px 0 0 15px" />
-				</NavLink>
-				<NavLink to="/users">
-					<Icon id="fa-users" margin="10px 0 0 15px" />
-				</NavLink>
+				{isAdmin && (
+					<>
+						<NavLink to="post">
+							<Icon id="fa-file-text-o" margin="10px 0 0 15px" />
+						</NavLink>
+						<NavLink to="/users">
+							<Icon id="fa-users" margin="10px 0 0 15px" />
+						</NavLink>
+					</>
+				)}
 			</RightAlined>
 		</div>
 	);
