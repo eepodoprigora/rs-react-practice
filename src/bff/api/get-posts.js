@@ -1,7 +1,12 @@
 import { transformPost } from '../transformers';
 
-export const getPosts = async () => {
-	return fetch('http://localhost:3005/posts')
+export const getPosts = async (page, limit) => {
+	return fetch(`http://localhost:3005/posts?_page=${page}&_per_page=${limit}`)
 		.then((loadedPosts) => loadedPosts.json())
-		.then((loadedPosts) => loadedPosts && loadedPosts.map(transformPost));
+		.then((loadedPosts) => {
+			return {
+				posts: loadedPosts.data && loadedPosts.data.map(transformPost),
+				lastPage: loadedPosts.last,
+			};
+		});
 };
