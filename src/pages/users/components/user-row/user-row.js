@@ -3,11 +3,10 @@ import { useState } from 'react';
 
 import { Icon } from '../../../../components';
 import { TableRow } from '../table-row/table-row';
-
 import { useServerRequest } from '../../../../hooks';
+import { PROP_TYPE } from '../../../../constants';
 
 import styled from 'styled-components';
-import { PROP_TYPE } from '../../../../constants';
 
 const UserRowContainer = ({
 	className,
