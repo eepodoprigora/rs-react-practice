@@ -1,6 +1,6 @@
 import { ROLE } from '../constants';
 import { sessions } from '../sessions';
-import { deleteComment, getPost, getComments } from '../api';
+import { deleteComment, getPost } from '../api';
 import { getPostCommentsWithAuthor } from '../utils';
 
 export const removePostComment = async (hash, postId, id) => {

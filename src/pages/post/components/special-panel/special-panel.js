@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -79,3 +80,9 @@ export const SpecialPanel = styled(SpecialPanelContainer)`
 		align-items: center;
 	}
 `;
+
+SpecialPanel.propTypes = {
+	publishedAt: PropTypes.string.isRequired,
+	editButton: PropTypes.node.isRequired,
+	id: PropTypes.string.isRequired,
+};

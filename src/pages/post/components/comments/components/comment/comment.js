@@ -1,12 +1,13 @@
+import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { Icon } from '../../../../../../components';
 import { removeCommentAsync, openModal, CLOSE_MODAL } from '../../../../../../actions';
-
-import styled from 'styled-components';
 import { useServerRequest } from '../../../../../../hooks';
 import { selectUserRole } from '../../../../../../selectors';
 import { ROLE } from '../../../../../../constants';
 
+import styled from 'styled-components';
 const CommentContainer = ({ className, id, author, publishedAt, content, postId }) => {
 	const dispatch = useDispatch();
 	const requestServer = useServerRequest();
@@ -79,3 +80,11 @@ export const Comment = styled(CommentContainer)`
 		justify-content: space-between;
 	}
 `;
+
+Comment.propTypes = {
+	id: PropTypes.string.isRequired,
+	author: PropTypes.string.isRequired,
+	content: PropTypes.string.isRequired,
+	publishedAt: PropTypes.string.isRequired,
+	postId: PropTypes.string.isRequired,
+};

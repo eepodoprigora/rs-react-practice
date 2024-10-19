@@ -1,12 +1,14 @@
-import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
+import { useLayoutEffect, useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Input, Icon } from '../../../../components';
 import { SpecialPanel } from '../special-panel/special-panel';
 import { sanitizeContent } from './utils';
-import { useLayoutEffect, useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { savePostAsync } from '../../../../actions';
 import { useServerRequest } from '../../../../hooks';
-import { useNavigate } from 'react-router-dom';
+
+import styled from 'styled-components';
+import { PROP_TYPE } from '../../../../constants';
 
 const PostFormContainer = ({
 	className,
@@ -92,3 +94,7 @@ export const PostForm = styled(PostFormContainer)`
 		border: 1px solid #000;
 	}
 `;
+
+PostForm.propTypes = {
+	post: PROP_TYPE.POST,
+};
